@@ -1,0 +1,15 @@
+--- 
+- name: Linux Patching
+  hosts: linux
+  become: yes
+
+  tasks:
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Reboot if required
+      reboot:
+        msg: "Reboot initiated by Ansible after patching"
+        reboot_timeout: 600
